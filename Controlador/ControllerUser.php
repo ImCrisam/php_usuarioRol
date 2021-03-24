@@ -27,7 +27,7 @@ class ControllerUser
                     //   $_SESSION["idRol"]             = $respuesta["idRol"];
                     //$_SESSION["rol"]             = $respuesta["nombreRol"];
 
-                    echo '<script> window.location = "usuarios"; </script>';
+                    echo '<script> window.location = "users"; </script>';
                 } else {
                     echo '<br>
                     <div class="alert alert-warning">Fallo</div>';
@@ -56,11 +56,11 @@ class ControllerUser
 
                 if ($respuesta == "ok") {
 
-                    echo '<script> window.location = "usuarios";</script>';
+                    echo '<script> window.location = "users";</script>';
                 }
             } else {
 
-                echo '<script> window.location = "usuarios";</script>';
+                echo '<script> window.location = "users";</script>';
             }
         }
     }
