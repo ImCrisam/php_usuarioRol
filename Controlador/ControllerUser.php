@@ -67,7 +67,6 @@ class ControllerUser
     public function update()
     {
         if (isset($_POST["id"])) {
-
             if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["password"]) && $_POST["password"]!="") {
                 $encriptar = crypt($_POST["password"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
