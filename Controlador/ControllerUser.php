@@ -20,8 +20,8 @@ class ControllerUser
                 ) {
 
                     $_SESSION["auth"] = "ok";
-                   $_SESSION["id"]                   = $respuesta["idUsuario"];
-                   $_SESSION["name"]                   = $respuesta["nombreUsuario"];
+                    $_SESSION["id"]                   = $respuesta["idUsuario"];
+                    $_SESSION["name"]                   = $respuesta["nombreUsuario"];
                     $_SESSION["email"]                = $respuesta["correoUsuario"];
                     $_SESSION["password"]             = $respuesta["contrasenaUsuario"];
                     //   $_SESSION["idRol"]             = $respuesta["idRol"];
@@ -64,8 +64,41 @@ class ControllerUser
             }
         }
     }
+    public function update()
+    {
+        if (isset($_POST["id"])) {
 
-    public static function delete($id){
+            if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["password"]) && $_POST["password"]!="") {
+                $encriptar = crypt($_POST["password"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+
+                $datos = array(
+                    "idUsuario" => $_POST["id"],
+                    "nombreUsuario"             => $_POST["name"],
+                    "correoUsuario"             => $_POST["email"],
+                    "idRol"             => $_POST["rol"],
+                    "contrasenaUsuario"          => $encriptar,
+                );
+
+               
+            }else{
+                $datos = array(
+                    "idUsuario" => $_POST["id"],
+                    "nombreUsuario"             => $_POST["name"],
+                    "correoUsuario"             => $_POST["email"],
+                    "contrasenaUsuario"          => "",
+                    "idRol"             => $_POST["rol"],
+                );
+            }
+            $respuesta = dbUser::update( $datos);
+            if ($respuesta == "ok") {
+
+                echo '<script> window.location = "users";</script>';
+            }
+        }
+    }
+
+    public static function delete($id)
+    {
         $respuesta = dbUser::delete($id);
 
         if ($respuesta == "ok") {

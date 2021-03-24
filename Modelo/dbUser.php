@@ -69,13 +69,13 @@ class dbUser
     public static function update($datos)
     {
         $tabla = "usuario";
-        if ($_POST["editarPassword"] != "") {
+        if ($datos["contrasenaUsuario"] != "") {
             $stmt = Conexion::conectar()->prepare(
                 "UPDATE $tabla 
                SET nombreUsuario = :nombreUsuario,
                contrasenaUsuario = :contrasenaUsuario,
                correoUsuario = :correoUsuario,
-               idRol = :idRol,
+               idRol = :idRol
                 WHERE idUsuario = :idUsuario"
             );
             $stmt->bindParam(":contrasenaUsuario", $datos["contrasenaUsuario"], PDO::PARAM_STR);
@@ -84,7 +84,7 @@ class dbUser
                 "UPDATE $tabla 
             SET nombreUsuario = :nombreUsuario,
                correoUsuario = :correoUsuario,
-               idRol = :idRol,
+               idRol = :idRol
                 WHERE idUsuario = :idUsuario"
             );
         }
@@ -102,7 +102,6 @@ class dbUser
             return "error";
         }
 
-        /* $stmt->close(); */
 
         $stmt = null;
     }
