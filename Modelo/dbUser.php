@@ -6,8 +6,13 @@ class dbUser
     public static function query($set, $valor)
     {
         $tabla = "usuario";
+        $tabla2 = "rol";
+        $joinOn = "usuario.idRol = rol.idRol";
         $stmt = Conexion::conectar()->prepare(
-            "SELECT * FROM $tabla WHERE $set = :$set"
+            "SELECT * FROM $tabla 
+            JOIN $tabla2 
+            ON $joinOn
+            WHERE $set = :$set"
         );
 
         $stmt->bindParam(":" . $set, $valor, PDO::PARAM_STR);
@@ -17,8 +22,12 @@ class dbUser
     public static function list()
     {
         $tabla = "usuario";
+        $tabla2 = "rol";
+        $joinOn = "usuario.idRol = rol.idRol";
         $stmt = Conexion::conectar()->prepare(
-            "SELECT * FROM $tabla"
+            "SELECT * FROM $tabla 
+            JOIN $tabla2 
+            ON $joinOn"
         );
         $stmt->execute();
         return $stmt->fetchAll();

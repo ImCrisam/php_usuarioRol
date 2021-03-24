@@ -29,6 +29,7 @@
             echo '</div>';
             echo '<div class="form-group mt-1">';
             echo '<label>Rol</label>';
+            echo '<label> --'.$user[6].'</label>';
             echo '<input  type="number" class="form-control" id="rol" name="rol"    value="' . $user[4] . '">';
             echo '</div>';
             echo ' <button type="submit" class="btn btn-primary mt-3">Actualizar</button>'

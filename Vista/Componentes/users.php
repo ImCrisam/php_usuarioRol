@@ -34,7 +34,7 @@
                           <td>' . $value["idUsuario"] . '</td>
                           <td>' . $value["nombreUsuario"] . '</td>
                           <td>' . $value["correoUsuario"] . '</td>
-                          <td>' . $value["idRol"] . '</td>';
+                          <td>' . $value["nombreRol"] . '</td>';
 
                                     echo '<td>
 
