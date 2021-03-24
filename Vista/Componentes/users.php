@@ -7,7 +7,7 @@
                 <div class="card mt-2">
                     <div class="card-header">
                         <a class="btn btn-primary" href="logup">
-                            Nuevo Perfil
+                            Nuevo Usuario
                         </a>
                     </div>
                     <div class="card-body">
