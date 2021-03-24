@@ -22,9 +22,19 @@ session_start();
         isset($_SESSION["auth"]) &&
         $_SESSION["auth"] === "ok"
     ) {
+        include "Componentes/header.php";
+        if (isset($_GET["ruta"])) {
+            if (
+                $_GET["ruta"] == "logout" ||
+                $_GET["ruta"] == "usuarios"
+            ) {
+                include "Componentes/" . $_GET["ruta"] . ".php";
+            }
+
+        }
     }else{
 
-        include "Componentes/logup.php";
+        include "Componentes/login.php";
     }
 
 

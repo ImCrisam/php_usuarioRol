@@ -16,17 +16,16 @@ class ControllerUser
                 $respuesta = dbUser::query($set, $valor);
 
                 if (
-                    $respuesta["correoUsuario"] == $_POST["email"] &&
-                    $respuesta["contrasenaUsuario"] == $encriptar
+                    $respuesta["correoUsuario"] == $_POST["email"] && $respuesta["contrasenaUsuario"] == $encriptar
                 ) {
 
                     $_SESSION["auth"] = "ok";
-                    $_SESSION["id"]                   = $respuesta["idUsuario"];
-                    $_SESSION["name"]                   = $respuesta["nombreUsuario"];
+                   $_SESSION["id"]                   = $respuesta["idUsuario"];
+                   $_SESSION["name"]                   = $respuesta["nombreUsuario"];
                     $_SESSION["email"]                = $respuesta["correoUsuario"];
                     $_SESSION["password"]             = $respuesta["contrasenaUsuario"];
-                    /*    $_SESSION["idRol"]             = $respuesta["idRol"];
-                    $_SESSION["rol"]             = $respuesta["nombreRol"]; */
+                    //   $_SESSION["idRol"]             = $respuesta["idRol"];
+                    //$_SESSION["rol"]             = $respuesta["nombreRol"];
 
                     echo '<script> window.location = "usuarios"; </script>';
                 } else {

@@ -14,8 +14,8 @@
          </div>
      </form>
      <?php
-        /* $login = new ControladorAdministrador();
-        $login->login(); */
+        $login = new ControllerUser();
+        $login->login();
         ?>
 
 

@@ -2,10 +2,10 @@
 require_once "Conexion.php";
 class dbUser{
 
-    public static function query($set, $value){
+    public static function query($set, $valor){
         $tabla = "usuario";
         $stmt = Conexion::conectar()->prepare(
-            "SELECT * FROM $tabla WHERE $set = :$set ORDER BY id DESC");
+            "SELECT * FROM $tabla WHERE $set = :$set");
 
         $stmt->bindParam(":" . $set, $valor, PDO::PARAM_STR);
         $stmt->execute();
@@ -14,7 +14,7 @@ class dbUser{
     public static function list(){
         $tabla = "usuario";
         $stmt = Conexion::conectar()->prepare(
-            "SELECT * FROM $tabla ORDER BY id DESC");
+            "SELECT * FROM $tabla");
         $stmt->execute();
         return $stmt->fetchAll();
     }
