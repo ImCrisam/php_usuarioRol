@@ -8,11 +8,23 @@
                  <input  class="form-control" id="name" name="name" placeholder="Nombre">
              </div>
              <div class="form-group mt-1">
-                 <input type="number" class="form-control" id="rol" name="rol" placeholder="Rol">
-             </div>
-             <div class="form-group mt-1">
                  <input type="email" class="form-control" id="email" name="email" placeholder="Email">
              </div>
+             <?php
+                echo '<div class="form-group mt-1">';
+                echo '<label>Rol</label>';
+                $roles = dbRol::list();
+                echo '<select id="rol" name="rol" class="form-select" >';
+                foreach ($roles as $key => $value) {
+                    if ($value[1] ==0) {
+                        echo '<option selected value="' . $value[0] . '">' . $user[1] . '</option>';
+                    } else {
+                        echo '<option value="' . $value[0] . '">' . $value[1] . '</option>';
+                    }
+                }
+                echo '</select>';
+                echo '</div>';
+             ?>
              <div class="form-group mt-1">
                  <input type="password" class="form-control" id="password" name="password" placeholder="Password">
              </div>
