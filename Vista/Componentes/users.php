@@ -40,8 +40,8 @@
 
                           <div class="btn-group">
 
-                            <a class="btn btn-warning  href="updateUser?id=' . $value["idUsuario"] . '">Editar</a>
-                            <a class="btn btn-danger  href="deleteUser?id=' . $value["idUsuario"] . '">Eliminar</a>
+                            <a class="btn btn-warning"  href="updateUser?id=' . $value["idUsuario"] . '">Editar</a>
+                            <a class="btn btn-danger"  href="deleteUser?id=' . $value["idUsuario"] . '">Eliminar</a>
 
 
                           </div>

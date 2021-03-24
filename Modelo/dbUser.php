@@ -1,34 +1,41 @@
-<?php 
+<?php
 require_once "Conexion.php";
-class dbUser{
+class dbUser
+{
 
-    public static function query($set, $valor){
+    public static function query($set, $valor)
+    {
         $tabla = "usuario";
         $stmt = Conexion::conectar()->prepare(
-            "SELECT * FROM $tabla WHERE $set = :$set");
+            "SELECT * FROM $tabla WHERE $set = :$set"
+        );
 
         $stmt->bindParam(":" . $set, $valor, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetch();
     }
-    public static function list(){
+    public static function list()
+    {
         $tabla = "usuario";
         $stmt = Conexion::conectar()->prepare(
-            "SELECT * FROM $tabla");
+            "SELECT * FROM $tabla"
+        );
         $stmt->execute();
         return $stmt->fetchAll();
     }
-    public static function create($datos){
+    public static function create($datos)
+    {
         $tabla = "usuario";
         $stmt = Conexion::conectar()->prepare(
             "INSERT INTO $tabla( 
                 nombreUsuario, contrasenaUsuario, correoUsuario, idRol) 
-                VALUES (:nombreUsuario, :contrasenaUsuario, :correoUsuario, :idRol)");
+                VALUES (:nombreUsuario, :contrasenaUsuario, :correoUsuario, :idRol)"
+        );
 
         $stmt->bindParam(":nombreUsuario", $datos["nombreUsuario"], PDO::PARAM_STR);
         $stmt->bindParam(":contrasenaUsuario", $datos["contrasenaUsuario"], PDO::PARAM_STR);
         $stmt->bindParam(":correoUsuario", $datos["correoUsuario"], PDO::PARAM_STR);
-        $stmt->bindParam(":idRol", $datos["idRol"], PDO::PARAM_STR);
+        $stmt->bindParam(":idRol", $datos["idRol"], PDO::PARAM_INT);
 
         if ($stmt->execute()) {
             return "ok";
@@ -39,14 +46,64 @@ class dbUser{
         $stmt = null;
     }
 
-    public static function delete(){
+    public static function delete($dato)
+    {
+        $tabla = "usuario";
 
+        $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idUsuario = :idUsuario");
+
+        $stmt->bindParam(":idUsuario", $dato, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+
+            return "ok";
+        } else {
+
+            return "error";
+        }
+
+        /*     $stmt->close(); */
+
+        $stmt = null;
     }
-    public static function update(){
-        
+    public static function update($datos)
+    {
+        $tabla = "usuario";
+        if ($_POST["editarPassword"] != "") {
+            $stmt = Conexion::conectar()->prepare(
+                "UPDATE $tabla 
+               SET nombreUsuario = :nombreUsuario,
+               contrasenaUsuario = :contrasenaUsuario,
+               correoUsuario = :correoUsuario,
+               idRol = :idRol,
+                WHERE idUsuario = :idUsuario"
+            );
+            $stmt->bindParam(":contrasenaUsuario", $datos["contrasenaUsuario"], PDO::PARAM_STR);
+        } else {
+            $stmt = Conexion::conectar()->prepare(
+                "UPDATE $tabla 
+            SET nombreUsuario = :nombreUsuario,
+               correoUsuario = :correoUsuario,
+               idRol = :idRol,
+                WHERE idUsuario = :idUsuario"
+            );
+        }
+
+        $stmt->bindParam(":nombreUsuario", $datos["nombreUsuario"], PDO::PARAM_STR);
+        $stmt->bindParam(":correoUsuario", $datos["correoUsuario"], PDO::PARAM_STR);
+        $stmt->bindParam(":idRol", $datos["idRol"], PDO::PARAM_INT);
+        $stmt->bindParam(":idUsuario", $datos["idUsuario"], PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+
+            return "ok";
+        } else {
+
+            return "error";
+        }
+
+        /* $stmt->close(); */
+
+        $stmt = null;
     }
-
-
-
-
 }

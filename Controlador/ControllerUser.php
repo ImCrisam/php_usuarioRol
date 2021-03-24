@@ -64,4 +64,12 @@ class ControllerUser
             }
         }
     }
+
+    public static function delete($id){
+        $respuesta = dbUser::delete($id);
+
+        if ($respuesta == "ok") {
+            echo '<script> window.location = "users";</script>';
+        }
+    }
 }

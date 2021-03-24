@@ -27,6 +27,8 @@ session_start();
             if (
                 $_GET["ruta"] == "logout" ||
                 $_GET["ruta"] == "logup" ||
+                $_GET["ruta"] == "deleteUser" ||
+                $_GET["ruta"] == "updateUser" ||
                 $_GET["ruta"] == "users"
             ) {
                 include "Componentes/" . $_GET["ruta"] . ".php";
