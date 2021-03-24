@@ -1,0 +1,7 @@
+CREATE TABLE `ZsP67MY4Ok`.`usuario` ( 
+    `idUsuario` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    `nombreUsuario` VARCHAR(50) NOT NULL , 
+    `contrasenaUsuario` VARCHAR(200) NOT NULL , 
+    `correoUsuario` VARCHAR(150) NOT NULL , 
+    `idRol` INT NOT NULL , 
+    FOREIGN KEY (`idRol`) REFERENCES `rol`(`idRol`));
