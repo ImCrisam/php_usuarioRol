@@ -30,7 +30,7 @@ class ControllerUser
                     echo '<script> window.location = "users"; </script>';
                 } else {
                     echo '<br>
-                    <div class="alert alert-warning">Fallo</div>';
+                    <div class="alert alert-warning">Error</div>';
                 }
             }
         }
