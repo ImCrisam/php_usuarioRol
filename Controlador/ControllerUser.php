@@ -96,7 +96,7 @@ class ControllerUser
         }
     }
 
-    public static function delete($id)
+    public function delete($id)
     {
         $respuesta = dbUser::delete($id);
 

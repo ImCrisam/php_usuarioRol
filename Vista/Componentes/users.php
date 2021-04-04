@@ -39,12 +39,13 @@
                                     echo '<td>
 
                           <div class="btn-group">
-
-                            <a class="btn btn-warning"  href="updateUser?id=' . $value["idUsuario"] . '">Editar</a>
-                            <a class="btn btn-danger"  href="deleteUser?id=' . $value["idUsuario"] . '">Eliminar</a>
-
-
-                          </div>
+                          <form method="post" action="updateUser">
+                          <button type="submit" class="btn btn-primary" name="editar" value="' . $value["idUsuario"] . '">Editar</button>
+                          </form>
+                          <form method="post">
+                            <button type="submit" class="btn btn-danger"  name="eliminar" value="' . $value["idUsuario"] . '">Eliminar</button>
+                            </form>
+                            </div>
 
                         </td>
 
@@ -62,3 +63,12 @@
         </div>
     </div>
 </div>
+
+<?php
+if (isset($_POST['eliminar'])) {
+    $logup = new ControllerUser();
+    $logup->delete($_POST['eliminar']);
+}
+
+
+?>
